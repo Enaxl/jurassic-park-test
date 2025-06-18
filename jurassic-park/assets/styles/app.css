@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-bleuLune: #244D61;
+    --color-bleuGlace: #5689C0;
+    --color-gris:#EAEBED;
+}
+
+/* Pour WebKit (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Pour Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+html {
+    transition: background-color 0.5s ease, color 0.5s ease, fill 0.5s ease , fill-rule 0.5s ease;
+}

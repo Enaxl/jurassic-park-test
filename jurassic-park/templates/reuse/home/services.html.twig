@@ -1,0 +1,54 @@
+<div class="w-full min-h-[70vh] flex flex-col items-center p-5 m-10 relative -top-9">
+    <div class="w-[90%] min-h-[50%]">
+            
+        <div class="text-center mb-10">
+            <h1 class="mb-6 text-4xl text-bleuLune font-bold text-center dark:text-white">Nos restaurants</h1>
+            <div class="w-20 h-1 bg-bleuLune mx-auto mt-2 rounded animate-pulse dark:bg-white"></div>
+            <p class="text-bleuGlace mt-2 italic text-sm dark:text-white">Prévisions des prochains jours pour nos visiteurs intrépides, soyez vigilant en cas de fortes pluies (avalanches, éboulements ou glissements de terrains fréquent)</p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-br  animate-gradient-move pointer-events-none z-0"></div>
+
+        <div class="w-full flex flex-wrap justify-center gap-20 relative z-10 py-10 px-20 rounded-3xl transition-all duration-500">
+            {% for r in randomRestaurants %}
+                <div class="rounded-lg overflow-hidden relative w-[45%] h-[300px] shadow-lg transition transform hover:scale-105">
+                    <div class="h-[55%] overflow-hidden">
+                        <img 
+                            src="{{ asset(r.restaurant.imageRestaurant) }}" 
+                            alt="{{ r.restaurant.libelleRestaurant }}" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <span class="absolute top-3 left-3 z-10 px-3 py-1 bg-white rounded text-bleuLune font-bold shadow-md">
+                        {{ r.restaurant.libelleRestaurant }}
+                    </span>
+
+                    <div class="p-4 flex flex-col justify-between h-[45%] bg-slate-900">
+                        <div class="text-white text-sm mb-3 leading-snug max-h-[85%] overflow-y-auto pr-2">
+                            {% for h in r.horaires %}
+                                <p>
+                                    {{ h.libelleJour }} :
+                                    {{ h.ouverture|date('H:i') }} - {{ h.fermeture|date('H:i') }}
+                                </p>
+                            {% else %}
+                                <p class="italic text-gray-400">Aucun horaire défini</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="flex items-center text-xs">
+                            <span class="text-white font-bold text-lg">
+                                Biome : <i class="text-bleuGlace">{{ r.restaurant.biome.libelleBiome }}</i>
+                            </span>
+                            <a href="/restaurant/{{ r.restaurant.id }}" class="dark:text-black rounded-full font-bold bg-white w-[5vw] transition h-[5vw] flex justify-center items-center absolute -bottom-5 right-0 hover:scale-105 cursor-pointer hover:underline">
+                                En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center text-bleuGlace italic">Aucun restaurant disponible pour le moment.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

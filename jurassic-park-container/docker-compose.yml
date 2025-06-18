@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image : enaxl/apache-php:latest
+    container_name: mon-projet-dev
+    ports:
+      - "80:80"
+    volumes:
+      - ../jurassic-park:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: mon-projet-postgres
+    environment:
+      POSTGRES_DB: ma_base
+      POSTGRES_USER: enaxl
+      POSTGRES_PASSWORD: enaxl
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:

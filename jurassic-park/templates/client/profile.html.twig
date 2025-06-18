@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    {% include 'reuse/hero.html.twig' %}
+
+    <div class="p-10 w-full h-fit flex justify-center items-center relative dark:bg-gray-900">
+        {% include 'client/dashboard-client.html.twig' %}
+
+        <div class="w-full ml-[20%] max-w-4xl bg-white rounded-xl shadow-lg shadow-slate-900 p-8">
+            <div>
+                <h1 class="text-2xl font-bold text-bleuLune dark:text-white">
+                    Bienvenue {{ client.prenom }} {{ client.nom }} sur votre profil.
+                </h1>
+                <p class="text-slate-500 dark:text-slate-400">Bon retour à vous.</p>
+            </div>
+
+            <form id="profile-form" class="space-y-2 mt-6" method="POST">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Email</label>
+                    <input type="email" name="email" value="{{ client.email }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white" required>
+                    <p class="text-red-500 text-sm hidden" id="error-email">Email invalide</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Nom</label>
+                    <input type="text" name="nom" value="{{ client.nom }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white" required>
+                    <p class="text-red-500 text-sm hidden" id="error-nom">Nom ne doit pas être vide</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Prénom</label>
+                    <input type="text" name="prenom" value="{{ client.prenom }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white" required>
+                    <p class="text-red-500 text-sm hidden" id="error-prenom">Prénom ne doit pas être vide</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Téléphone</label>
+                    <input type="text" name="numeroTelephone" value="{{ client.numeroTelephone }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white" required>
+                    <p class="text-red-500 text-sm hidden" id="error-tel">Téléphone invalide (10 chiffres requis)</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Adresse</label>
+                    <input type="text" name="adressePostal" value="{{ client.adressePostal }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white">
+                    <p class="text-red-500 text-sm hidden" id="error-adresse">Adresse postal ne doit pas être vide</p>
+
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Code Postal</label>
+                    <input type="number" name="codePostal" value="{{ client.codePostal }}" class="w-full rounded-md border px-3 py-1 mt-1 dark:bg-slate-700 dark:text-white">
+                    <p class="text-red-500 text-sm hidden" id="error-code">Code postal ne doit pas être vide</p>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="bg-slate-900 text-white px-4 py-2 rounded cursor-pointer hover:bg-bleuLune transition">
+                        Enregistrer les modifications
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', function (e) {
+            let hasError = false;
+
+            // Email validation
+            const emailInput = document.querySelector('input[name="email"]');
+            const emailError = document.getElementById('error-email');
+            const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.classList.remove('hidden');
+                hasError = true;
+            } else {
+                emailError.classList.add('hidden');
+            }
+
+            // Téléphone validation
+            const telInput = document.querySelector('input[name="numeroTelephone"]');
+            const telError = document.getElementById('error-tel');
+            const telRegex = /^\d{10}$/;
+            if (!telRegex.test(telInput.value.trim())) {
+                telError.classList.remove('hidden');
+                hasError = true;
+            } else {
+                telError.classList.add('hidden');
+            }
+
+            //Champ text validation
+            const nomInput = document.querySelector('input[name="nom"]');
+            const nomError = document.getElementById('error-nom');
+            const prenomInput = document.querySelector('input[name="prenom"]');
+            const prenomError = document.getElementById('error-tel');
+            const adresseInput = document.querySelector('input[name="adressePostal"]');
+            const adresseError = document.getElementById('error-adresse');
+            const codeInput = document.querySelector('input[name="codePostal"]');
+            const codeError = document.getElementById('error-code');
+
+            if(nomInput.value == ""){
+                nomError.classList.remove('hidden');
+                hasError = true;
+            }else{
+                nomError.classList.add('hidden');
+            }
+
+            if(prenomInput.value == ""){
+                prenomError.classList.remove('hidden');
+                hasError = true;
+            }else{
+                prenomError.classList.add('hidden');
+            }
+
+            if(adresseInput.value == ""){
+                adresseError.classList.remove('hidden');
+                hasError = true;
+            }else{
+                adresseError.classList.add('hidden');
+            }
+
+            if(codeInput.value == ""){
+                codeError.classList.remove('hidden');
+                hasError = true;
+            }else{
+                codeError.classList.add('hidden');
+            }
+
+            if (hasError) {
+                e.preventDefault(); 
+            }
+        });
+    </script>
+{% endblock %}
