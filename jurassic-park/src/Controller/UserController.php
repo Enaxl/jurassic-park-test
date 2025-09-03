@@ -2,16 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\OuvertureRestaurant;
-use App\Entity\Restaurant;
-use App\Form\RestaurantType;
 use App\Repository\HotelRepository;
 use App\Repository\LouerHotelRepository;
 use App\Repository\OuvertureRestaurantRepository;
 use App\Repository\UserRepository;
 use App\Utils\TraitEmailFormat;
 
-use Symfony\Component\Mime\Email;
 use App\Repository\DinosaureRepository;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +19,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
@@ -39,7 +34,7 @@ final class UserController extends AbstractController
         $this->restaurantRepository = $restaurantRepository;
     }
 
-    #[Route('/', name: 'app_user_accueil', methods: ['POST'])]
+    #[Route('/', name: 'app_user_accueil', methods: ['POST', 'GET'])]
     public function home(LouerHotelRepository $louerHotelRepository, OuvertureRestaurantRepository $ouvertureRestaurantRepository): Response
     {
         $randomHotels = $this->getRandomHotels();

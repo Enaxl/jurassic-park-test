@@ -77,7 +77,7 @@ return [
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/' => [
-            [['_route' => 'app_user_accueil', '_controller' => 'App\\Controller\\UserController::home'], null, ['POST' => 0], null, false, false, null],
+            [['_route' => 'app_user_accueil', '_controller' => 'App\\Controller\\UserController::home'], null, ['POST' => 0, 'GET' => 1], null, false, false, null],
             [['_route' => 'user_home', '_controller' => 'App\\Controller\\UserController::home'], null, null, null, false, false, null],
         ],
         '/dinopedia' => [[['_route' => 'app_dinopedia', '_controller' => 'App\\Controller\\UserController::dinopedia'], null, ['GET' => 0], null, false, false, null]],
