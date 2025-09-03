@@ -27,14 +27,6 @@ class RemboursementBillet
     public function setRemboursement(?Remboursement $remboursement): static
     {
         $this->remboursement = $remboursement;
-
-        return $this;
-    }
-
-    public function setMontant(float $montant): static
-    {
-        $this->montant = $montant;
-
         return $this;
     }
 

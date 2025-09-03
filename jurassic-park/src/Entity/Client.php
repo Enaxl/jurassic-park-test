@@ -91,27 +91,6 @@ class Client extends User
         return $this->produitsAchetes;
     }
 
-    public function addProduitsAchete(AcheterProduit $produitsAchete): static
-    {
-        if (!$this->produitsAchetes->contains($produitsAchete)) {
-            $this->produitsAchetes->add($produitsAchete);
-            $produitsAchete->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduitsAchete(AcheterProduit $produitsAchete): static
-    {
-        if ($this->produitsAchetes->removeElement($produitsAchete)) {
-            // set the owning side to null (unless already changed)
-            if ($produitsAchete->getClient() === $this) {
-                $produitsAchete->setClient(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LouerHotel>

@@ -33,7 +33,7 @@ class LouerHotelFixtures extends Fixture implements DependentFixtureInterface
                 $start = $faker->dateTimeBetween('-2 months', '+2 months');
                 $end = (clone $start)->modify('+'.rand(1, 5).' days');
 
-                $note = rand(0, 1) ? rand(1, 5) : null; // 50% de chances d'avoir une note
+                $note = rand(0, 1) ? rand(1, 5) : 3; // 50% de chances d'avoir une note
 
                 $sejour->setUser($client);
                 $sejour->setChambre($chambre);
