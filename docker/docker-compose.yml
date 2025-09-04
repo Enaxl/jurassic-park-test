@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../jurassic-park:/var/www/html
+      -  ../jurassic-park:/var/www/html
     depends_on:
       - db
 

@@ -1,21 +1,22 @@
-EXEC=docker compose exec
-PHP=$(EXEC) web php
-CONSOLE=$(PHP) bin/console
+COMPOSE := docker compose -f docker/docker-compose.yml
+EXEC    := $(COMPOSE) exec
+PHP     := $(EXEC) web php
+CONSOLE := $(PHP) /var/www/html/bin/console
 
 up:
-	docker compose up -d
+	$(COMPOSE) up -d
 
 down:
-	docker compose down
-
-build:
-	docker compose up -d --build
+	$(COMPOSE) down
 
 logs:
-	docker compose logs -f
+	$(COMPOSE) logs -f web
+
+build:
+	$(COMPOSE) up -d --build --remove-orphans
 
 ps:
-	docker compose ps
+	$(COMPOSE) ps
 
 cc: ## Clear cache
 	$(CONSOLE) cache:clear
@@ -35,6 +36,5 @@ reset-db: ## Reset complet de la base
 bash: ## Entrer dans le conteneur web
 	$(EXEC) web bash
 
-db: ## Entrer dans le conteneur postgres
+db: ## Entrer dans Postgres
 	$(EXEC) db psql -U enaxl -d ma_base
-

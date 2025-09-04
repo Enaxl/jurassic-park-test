@@ -100,3 +100,8 @@ cd7712,172.21.0.1,GET,http://localhost/dinopedia/11,1756892896,,200,request
 6252ac,172.21.0.1,GET,http://localhost/dinopedia/10,1756892898,,200,request
 e01fe5,172.21.0.1,GET,http://localhost/dinopedia/11,1756892901,,200,request
 90e9c7,172.21.0.1,GET,http://localhost/dinopedia,1756892996,,200,request
+b7fc21,172.20.0.1,GET,http://localhost/,1756903183,81ad28,500,request
+81ad28,172.20.0.1,GET,http://localhost/,1756903183,,500,request
+16ddf7,172.20.0.1,GET,http://localhost/,1756903571,,200,request
+91e362,172.20.0.1,GET,http://localhost/,1756903588,,200,request
+734499,172.20.0.1,GET,http://localhost/dinopedia,1756903599,,200,request
