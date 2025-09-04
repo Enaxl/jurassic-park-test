@@ -20,9 +20,10 @@ services:
       POSTGRES_PASSWORD: enaxl
     volumes:
       - postgres-data-jrp:/var/lib/postgresql/data
+      - symfony-var:/var/www/html/var
     ports:
       - "5432:5432"
 
 volumes:
   postgres-data-jrp:
-
+  symfony-var:
